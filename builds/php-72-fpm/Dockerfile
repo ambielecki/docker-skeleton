@@ -3,23 +3,29 @@ FROM php:7.2.14-fpm
 RUN apt-get update && \
     apt-get upgrade -y
 
-RUN pecl install xdebug
-
 RUN apt-get install -y --force-yes \
     curl \
     git \
     gnupg \
+    libgd-dev \
     libzip-dev \
     nano \
     unzip \
     vim \
     zip \
-    zlib1g-dev \
-    && docker-php-ext-install \
+    zlib1g-dev
+
+RUN pecl install xdebug
+
+RUN docker-php-ext-install \
+    gd \
     pdo \
     pdo_mysql \
     zip \
     && docker-php-ext-enable xdebug
+
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/ --with-jpeg-dir=/usr/ --with-png-dir=/usr/  &&  \
+    docker-php-ext-install gd
 
 # Install latest node and npm
 RUN  apt-get update -yq \
