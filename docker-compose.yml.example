@@ -22,7 +22,7 @@ services:
 
   example-apache:
     container_name: apache_web
-    build: ./builds/divelog
+    build: ./builds/apache-example
     environment:
       - VIRTUAL_HOST=example-apache.test
     volumes:
@@ -32,7 +32,7 @@ services:
 
   example-nginx:
       container_name: nginx_web
-      build: ./builds/divelog
+      build: ./builds/nginx-example
       environment:
         - VIRTUAL_HOST=example-nginx.test
       volumes:
