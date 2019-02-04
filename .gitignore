@@ -1,0 +1,4 @@
+/.idea
+/db-data
+/builds/divelog
+docker-compose.yml
