@@ -15,8 +15,9 @@ RUN apt-get install -y --force-yes \
     zip \
     zlib1g-dev
 
+RUN pecl install xdebug
+
 RUN docker-php-ext-install \
-    gd \
     pdo \
     pdo_mysql \
     zip \
