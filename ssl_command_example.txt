@@ -1,0 +1,14 @@
+openssl req \
+    -newkey rsa:2048 \
+    -x509 \
+    -nodes \
+    -keyout divelog.test.key \
+    -new \
+    -out divelog.test.crt \
+    -subj /CN=\*.divelog.test \
+    -reqexts SAN \
+    -extensions SAN \
+    -config <(cat /System/Library/OpenSSL/openssl.cnf \
+        <(printf '[SAN]\nsubjectAltName=DNS:\*.divelog.test')) \
+    -sha256 \
+    -days 3650

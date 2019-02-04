@@ -12,6 +12,10 @@ web service.
 * Register hosts (eg. example.test) in your machines hosts file
 * This should work with xdebug as well, replace docker.for.win.localhost in the xdebug.ini if 
 you are on a mac (make sure you use a separate listen port for each apache or php-fpm container)
+* HTTPS is a work in progress, you'll need to create a certs folder and generate a self signed
+cert for each site.  use the ssl_command_example.txt and replace the divelog.test domain with 
+your own.  You'll need to set the certificate as trusted through the mac keychain or Microsoft 
+Management Control (google is your friend here)
 * You will need to ssh into the db container or connect through port 33060 with a desktop client
 to create schemas and users (for mysql may I suggest creating the users with mysql_native_password 
 like `CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'example_pwd'` 
