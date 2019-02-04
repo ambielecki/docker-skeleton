@@ -21,24 +21,27 @@ services:
       - ./db-data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
+    working_dir: /var/lib/mysql
 
   example-apache:
     container_name: apache_web
-    build: ./builds/apache-example
+    build: ./example-builds/apache-example
     environment:
       - VIRTUAL_HOST=example-apache.test
     volumes:
       - ../example-apache:/var/www/example-apache
+    working_dir: /var/www/example-apache
     links:
       - mysql-8
 
   example-nginx:
       container_name: nginx_web
-      build: ./builds/nginx-example
+      build: ./example-builds/nginx-example
       environment:
         - VIRTUAL_HOST=example-nginx.test
       volumes:
         - ../example-nginx:/var/www/example-nginx
+      working_dir: /var/www/example-nginx
       links:
         - php-72-fpm
 
@@ -46,8 +49,9 @@ services:
 # need one instance shared for all nginx containers
   php-72-fpm:
     container_name: php_72_fpm
-    build: ./builds/php-72-fpm
+    build: ./example-builds/php-72-fpm
     volumes:
       - ../:/var/www/
+    working_dir: /var/www
     links:
       - mysql-8
