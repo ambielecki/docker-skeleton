@@ -40,6 +40,8 @@ services:
       links:
         - php-72-fpm
 
+# Map all projects to the php fpm volume so we only
+# need one instance shared for all nginx containers
   php-72-fpm:
     container_name: php_72_fpm
     build: ./builds/php-72-fpm
