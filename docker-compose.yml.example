@@ -26,7 +26,7 @@ services:
     environment:
       - VIRTUAL_HOST=example-apache.test
     volumes:
-      - ../example-apache:/var/www/
+      - ../example-apache:/var/www/example-apache
     links:
       - mysql-8
 
@@ -36,7 +36,7 @@ services:
       environment:
         - VIRTUAL_HOST=example-nginx.test
       volumes:
-        - ../example-nginx:/var/www/
+        - ../example-nginx:/var/www/example-nginx
       links:
         - php-72-fpm
 
