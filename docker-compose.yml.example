@@ -45,8 +45,6 @@ services:
   php-72-fpm:
     container_name: php_72_fpm
     build: ./builds/php-72-fpm
-    ports:
-      - "9001:9000"
     volumes:
       - ../:/var/www/
     links:
