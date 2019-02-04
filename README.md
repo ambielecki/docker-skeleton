@@ -15,7 +15,8 @@ you are on a mac (make sure you use a separate listen port for each apache or ph
 * HTTPS is a work in progress, you'll need to create a certs folder and generate a self signed
 cert for each site.  use the ssl_command_example.txt and replace the divelog.test domain with 
 your own.  You'll need to set the certificate as trusted through the mac keychain or Microsoft 
-Management Control (google is your friend here)
+Management Control (google is your friend here), you can also create self signed certs see 
+[self-signed certs](https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/)
 * You will need to ssh into the db container or connect through port 33060 with a desktop client
 to create schemas and users (for mysql may I suggest creating the users with mysql_native_password 
 like `CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'example_pwd'` 

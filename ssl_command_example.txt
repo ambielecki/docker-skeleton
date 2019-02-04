@@ -1,3 +1,4 @@
+Command to generate a single cert that you need to trust
 openssl req \
     -newkey rsa:2048 \
     -x509 \
@@ -5,10 +6,13 @@ openssl req \
     -keyout divelog.test.key \
     -new \
     -out divelog.test.crt \
-    -subj /CN=\*.divelog.test \
+    -subj /CN=\divelog.test \
     -reqexts SAN \
     -extensions SAN \
     -config <(cat /System/Library/OpenSSL/openssl.cnf \
-        <(printf '[SAN]\nsubjectAltName=DNS:\*.divelog.test')) \
+        <(printf '[SAN]\nsubjectAltName=DNS:\divelog.test')) \
     -sha256 \
     -days 3650
+
+command for generating a self-signed cert
+openssl x509 -req -in divelog.test.csr -CA bieleckiCA.pem -CAkey bieleckiCA.key -CAcreateserial -out divelog.test.crt -days 1825 -sha256 -extfile divelog.test.ext
