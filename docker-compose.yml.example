@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx-proxy:
-    container_name: ab_nginx_proxy
+    container_name: nginx_proxy
     image: jwilder/nginx-proxy
     ports:
       - "80:80"
@@ -12,7 +12,7 @@ services:
   mysql-8:
     image: mysql:8.0.14
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    container_name: ab_mysql_8
+    container_name: mysql_8
     ports:
       - "33060:3306"
     volumes:
@@ -21,7 +21,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
 
   example-apache:
-    container_name: ab_divelog_web
+    container_name: apache_web
     build: ./builds/divelog
     environment:
       - VIRTUAL_HOST=example-apache.test
@@ -31,7 +31,7 @@ services:
       - mysql-8
 
   example-nginx:
-      container_name: ab_divelog_web
+      container_name: nginx_web
       build: ./builds/divelog
       environment:
         - VIRTUAL_HOST=example-nginx.test
@@ -41,7 +41,7 @@ services:
         - php-72-fpm
 
   php-72-fpm:
-    container_name: ab_php_72_fpm
+    container_name: php_72_fpm
     build: ./builds/php-72-fpm
     ports:
       - "9001:9000"
